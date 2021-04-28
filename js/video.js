@@ -17,7 +17,7 @@ function browserRedirect() {
    if (!(bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM)) {
        var html = "<video loop autoplay style='height: 100%;width: 100%;object-fit: cover;'><source src='你的视频地址'></source></video>";
        /*添加video*/
-       document.getElementById("nav").innerHTML += html;
+    //    document.getElementById("nav").innerHTML += html;
 
        /*打字效果*/
        var subtitle = document.getElementById('subtitle')
@@ -25,7 +25,7 @@ function browserRedirect() {
 
        function typing() {
            var timer = 0;
-           var str = '不要等到明天，今天就行动起来！！';
+           var str = '';
            if (i <= str.length) {
                subtitle.innerHTML = str.slice(0, i++)
                timer = setTimeout(typing, 300)
