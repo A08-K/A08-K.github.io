@@ -173,7 +173,7 @@
 <h4 id="第三步：安装vue-cli-脚手架-。"><a href="#第三步：安装vue-cli-脚手架-。" class="headerlink" title="第三步：安装vue-cli 脚手架 。"></a>第三步：安装vue-cli 脚手架 。</h4><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># 全局安装 vue-cli</span></span><br><span class="line">cnpm install vue-cli -g  </span><br></pre></td></tr></tbody></table></figure>
 
 <p>使用 <code>vue -V</code> （注意 V 大写）查看是否安装成功</p>
-<h4 id="第四步：安装webpack"><a href="#第四步：安装webpack" class="headerlink" title="第四步：安装webpack"></a>第四步：安装webpack</h4><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">npm install webpack -g</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="第四步：安装webpack"><a href="#第四步：安装webpack" class="headerlink" title="第四步：安装webpack"></a>第四步：安装webpack</h4><figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">npm install webpack -g</span><br></pre></td></tr></tbody></table></figure>
 
 <p>输入 <code>webpack -v</code> 查看是否安装成功</p>
 <h3 id="二、创建项目"><a href="#二、创建项目" class="headerlink" title="二、创建项目"></a>二、创建项目</h3><h4 id="方法一：手动创建"><a href="#方法一：手动创建" class="headerlink" title="方法一：手动创建"></a>方法一：手动创建</h4><h5 id="第一步：进入你想放置项目的文件夹，在命令提示窗口执行如下命令："><a href="#第一步：进入你想放置项目的文件夹，在命令提示窗口执行如下命令：" class="headerlink" title="第一步：进入你想放置项目的文件夹，在命令提示窗口执行如下命令："></a>第一步：进入你想放置项目的文件夹，在命令提示窗口执行如下命令：</h5><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">vue init webpack 项目名称</span><br></pre></td></tr></tbody></table></figure>
@@ -235,10 +235,10 @@
 
 <p>先按Esc，输入<code>:wq</code>，回车</p>
 <p>在 git bash 中输入以下命令测试该用户的 SSH 密钥是否有效：</p>
-<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></tbody></table></figure>
 
 <p>在 git bash 中输入以下命令测试该用户的 SSH 密钥是否有效：</p>
-<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">ssh -T git@gitee.com </span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">ssh -T git@gitee.com </span><br></pre></td></tr></tbody></table></figure>
 
 <h3 id="5-为各自仓库配置不同的用户名和邮箱"><a href="#5-为各自仓库配置不同的用户名和邮箱" class="headerlink" title="5.为各自仓库配置不同的用户名和邮箱"></a>5.为各自仓库配置不同的用户名和邮箱</h3><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">git config --<span class="built_in">local</span> user.name <span class="string">'xx'</span> git config --<span class="built_in">local</span> user.email <span class="string">'xx@qq.com'</span> </span><br></pre></td></tr></tbody></table></figure>
 
