@@ -1,1 +1,156 @@
-String.prototype.render=function(e){return this.replace(/(\\)?\{([^\{\}\\]+)(\\)?\}/g,(function(t,o,s,n){if(o||n)return t.replace("\\","");var r,a,i=s.replace(/\s/g,"").split("."),l=e;for(r=0,a=i.length;r<a;++r)if(null==(l=l[i[r]]))return"";return l}))};var re=/x/;function initTips(){$.ajax({cache:!0,url:"live2d/message.json",dataType:"json",success:function(e){$.each(e.mouseover,(function(e,t){$(document).on("mouseover",t.selector,(function(){var e=t.text;Array.isArray(t.text)&&(e=t.text[Math.floor(Math.random()*t.text.length+1)-1]),showMessage(e=e.render({text:$(this).text()}),3e3)}))})),$.each(e.click,(function(e,t){$(document).on("click",t.selector,(function(){var e=t.text;Array.isArray(t.text)&&(e=t.text[Math.floor(Math.random()*t.text.length+1)-1]),showMessage(e=e.render({text:$(this).text()}),3e3,!0)}))})),$.each(e.seasons,(function(e,t){var o=new Date,s=t.date.split("-")[0],n=t.date.split("-")[1]||s;if(s.split("/")[0]<=o.getMonth()+1&&o.getMonth()+1<=n.split("/")[0]&&s.split("/")[1]<=o.getDate()&&o.getDate()<=n.split("/")[1]){var r=t.text;Array.isArray(t.text)&&(r=t.text[Math.floor(Math.random()*t.text.length+1)-1]),showMessage(r=r.render({year:o.getFullYear()}),6e3,!0)}}))}})}function showHitokoto(){$.getJSON("https://v1.hitokoto.cn/",(function(e){showMessage(e.hitokoto,5e3)}))}function showMessage(e,t,o){(o||""===sessionStorage.getItem("waifu-text")||null===sessionStorage.getItem("waifu-text"))&&(Array.isArray(e)&&(e=e[Math.floor(Math.random()*e.length+1)-1]),o&&sessionStorage.setItem("waifu-text",e),$(".waifu-tips").stop(),$(".waifu-tips").html(e).fadeTo(200,1),null===t&&(t=5e3),hideMessage(t))}function hideMessage(e){$(".waifu-tips").stop().css("opacity",1),null===e&&(e=5e3),window.setTimeout((function(){sessionStorage.removeItem("waifu-text")}),e),$(".waifu-tips").delay(e).fadeTo(200,0)}function initLive2d(){$(".hide-button").fadeOut(0).on("click",()=>{$("#landlord").css("display","none")}),$("#landlord").hover(()=>{$(".hide-button").fadeIn(600)},()=>{$(".hide-button").fadeOut(600)})}console.log(re),re.toString=function(){return showMessage("哈哈，你打开了控制台，是想要看看我的秘密吗？",5e3,!0),""},$(document).on("copy",(function(){showMessage("你都复制了些什么呀，转载要记得加上出处哦",5e3,!0)})),initTips(),function(){var e,t=document.createElement("a");if(""!==document.referrer&&(t.href=document.referrer),""!==t.href&&"litblc.com"!=t.hostname){(t=document.createElement("a")).href=document.referrer,e='Hello! 来自 <span style="color:#0099cc;">'+t.hostname+"</span> 的朋友";var o=t.hostname.split(".")[1];"baidu"==o?e='Hello! 来自 百度搜索 的朋友<br>你是搜索 <span style="color:#0099cc;">'+t.search.split("&wd=")[1].split("&")[0]+"</span> 找到的我吗？":"so"==o?e='Hello! 来自 360搜索 的朋友<br>你是搜索 <span style="color:#0099cc;">'+t.search.split("&q=")[1].split("&")[0]+"</span> 找到的我吗？":"google"==o&&(e='Hello! 来自 谷歌搜索 的朋友<br>欢迎阅读<span style="color:#0099cc;">『'+document.title.split(" - ")[0]+"』</span>")}else if("https://www.litblc.com/"==window.location.href){var s=(new Date).getHours();e=s>23||s<=5?"你是夜猫子呀？这么晚还不睡觉，明天起的来嘛":s>5&&s<=7?"早上好！一日之计在于晨，美好的一天就要开始了":s>7&&s<=11?"上午好！工作顺利嘛，不要久坐，多起来走动走动哦！":s>11&&s<=14?"中午了，工作了一个上午，现在是午餐时间！":s>14&&s<=17?"午后很容易犯困呢，今天的运动目标完成了吗？":s>17&&s<=19?"傍晚了！窗外夕阳的景色很美丽呢，最美不过夕阳红~":s>19&&s<=21?"晚上好，今天过得怎么样？":s>21&&s<=23?"已经这么晚了呀，早点休息吧，晚安~":"嗨~ 快来逗我玩吧！"}else e='欢迎阅读<span style="color:#0099cc;">「 '+document.title.split(" - ")[0]+" 」</span>";showMessage(e,6e3)}(),window.hitokotoTimer=window.setInterval(showHitokoto,3e4),initLive2d();
+String.prototype.render = function (context) {
+    var tokenReg = /(\\)?\{([^\{\}\\]+)(\\)?\}/g;
+
+    return this.replace(tokenReg, function (word, slash1, token, slash2) {
+        if (slash1 || slash2) {
+            return word.replace('\\', '');
+        }
+
+        var variables = token.replace(/\s/g, '').split('.');
+        var currentObject = context;
+        var i, length, variable;
+
+        for (i = 0, length = variables.length; i < length; ++i) {
+            variable = variables[i];
+            currentObject = currentObject[variable];
+            if (currentObject === undefined || currentObject === null) return '';
+        }
+        return currentObject;
+    });
+};
+
+var re = /x/;
+console.log(re);
+re.toString = function() {
+    showMessage('哈哈，你打开了控制台，是想要看看我的秘密吗？', 5000, true);
+    return '';
+};
+
+$(document).on('copy', function (){
+    showMessage('你都复制了些什么呀，转载要记得加上出处哦', 5000, true);
+});
+
+function initTips() {
+    $.ajax({
+        cache: true,
+        url: "live2d/message.json",
+        dataType: "json",
+        success: function (result) {
+            $.each(result.mouseover, function (index, tips) {
+                $(document).on("mouseover", tips.selector, function () {
+                    var text = tips.text;
+                    if (Array.isArray(tips.text)) text = tips.text[Math.floor(Math.random() * tips.text.length + 1) - 1];
+                    text = text.render({text: $(this).text()});
+                    showMessage(text, 3000);
+                });
+            });
+            $.each(result.click, function (index, tips) {
+                $(document).on("click", tips.selector, function () {
+                    var text = tips.text;
+                    if (Array.isArray(tips.text)) text = tips.text[Math.floor(Math.random() * tips.text.length + 1) - 1];
+                    text = text.render({text: $(this).text()});
+                    showMessage(text, 3000, true);
+                });
+            });
+            $.each(result.seasons, function (index, tips) {
+                var now = new Date();
+                var after = tips.date.split('-')[0];
+                var before = tips.date.split('-')[1] || after;
+
+                if ((after.split('/')[0] <= now.getMonth() + 1 && now.getMonth() + 1 <= before.split('/')[0]) &&
+                    (after.split('/')[1] <= now.getDate() && now.getDate() <= before.split('/')[1])) {
+                    var text = tips.text;
+                    if (Array.isArray(tips.text)) text = tips.text[Math.floor(Math.random() * tips.text.length + 1) - 1];
+                    text = text.render({year: now.getFullYear()});
+                    showMessage(text, 6000, true);
+                }
+            });
+        }
+    });
+}
+initTips();
+
+(function (){
+    var text;
+    var referrer = document.createElement('a');
+    if(document.referrer !== ''){
+        referrer.href = document.referrer;
+    }
+
+    if(referrer.href !== '' && referrer.hostname != 'litblc.com'){
+        var referrer = document.createElement('a');
+        referrer.href = document.referrer;
+        text = 'Hello! 来自 <span style="color:#0099cc;">' + referrer.hostname + '</span> 的朋友';
+        var domain = referrer.hostname.split('.')[1];
+        if (domain == 'baidu') {
+            text = 'Hello! 来自 百度搜索 的朋友<br>你是搜索 <span style="color:#0099cc;">' + referrer.search.split('&wd=')[1].split('&')[0] + '</span> 找到的我吗？';
+        }else if (domain == 'so') {
+            text = 'Hello! 来自 360搜索 的朋友<br>你是搜索 <span style="color:#0099cc;">' + referrer.search.split('&q=')[1].split('&')[0] + '</span> 找到的我吗？';
+        }else if (domain == 'google') {
+            text = 'Hello! 来自 谷歌搜索 的朋友<br>欢迎阅读<span style="color:#0099cc;">『' + document.title.split(' - ')[0] + '』</span>';
+        }
+    }else {
+        if (window.location.href == 'https://www.litblc.com/') { //如果是主页
+            var now = (new Date()).getHours();
+            if (now > 23 || now <= 5) {
+                text = '你是夜猫子呀？这么晚还不睡觉，明天起的来嘛';
+            } else if (now > 5 && now <= 7) {
+                text = '早上好！一日之计在于晨，美好的一天就要开始了';
+            } else if (now > 7 && now <= 11) {
+                text = '上午好！工作顺利嘛，不要久坐，多起来走动走动哦！';
+            } else if (now > 11 && now <= 14) {
+                text = '中午了，工作了一个上午，现在是午餐时间！';
+            } else if (now > 14 && now <= 17) {
+                text = '午后很容易犯困呢，今天的运动目标完成了吗？';
+            } else if (now > 17 && now <= 19) {
+                text = '傍晚了！窗外夕阳的景色很美丽呢，最美不过夕阳红~';
+            } else if (now > 19 && now <= 21) {
+                text = '晚上好，今天过得怎么样？';
+            } else if (now > 21 && now <= 23) {
+                text = '已经这么晚了呀，早点休息吧，晚安~';
+            } else {
+                text = '嗨~ 快来逗我玩吧！';
+            }
+        }else {
+            text = '欢迎阅读<span style="color:#0099cc;">「 ' + document.title.split(' - ')[0] + ' 」</span>';
+        }
+    }
+    showMessage(text, 6000);
+})();
+
+window.hitokotoTimer = window.setInterval(showHitokoto,30000);
+
+function showHitokoto() {
+    $.getJSON("https://v1.hitokoto.cn/", function (result) {
+        showMessage(result.hitokoto, 5000);
+    });
+}
+function showMessage(text, timeout, flag){
+    if(flag || sessionStorage.getItem('waifu-text') === '' || sessionStorage.getItem('waifu-text') === null){
+        if(Array.isArray(text)) text = text[Math.floor(Math.random() * text.length + 1)-1];
+        //console.log(text);
+        if(flag) sessionStorage.setItem('waifu-text', text);
+        $('.waifu-tips').stop();
+        $('.waifu-tips').html(text).fadeTo(200, 1);
+        if (timeout === null) timeout = 5000;
+        hideMessage(timeout);
+    }
+}
+function hideMessage(timeout){
+    $('.waifu-tips').stop().css('opacity',1);
+    if (timeout === null) timeout = 5000;
+    window.setTimeout(function() {sessionStorage.removeItem('waifu-text')}, timeout);
+    $('.waifu-tips').delay(timeout).fadeTo(200, 0);
+}
+function initLive2d() {
+    $('.hide-button').fadeOut(0).on('click', () => {
+        $('#landlord').css('display', 'none')
+    })
+    $('#landlord').hover(() => {
+        $('.hide-button').fadeIn(600)
+    }, () => {
+        $('.hide-button').fadeOut(600)
+    })
+}
+
+initLive2d();

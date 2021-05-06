@@ -1,1 +1,41 @@
-function browserRedirect(){var i=navigator.userAgent.toLowerCase(),e="ipad"==i.match(/ipad/i),t="iphone os"==i.match(/iphone os/i),o="midp"==i.match(/midp/i),n="rv:1.2.3.4"==i.match(/rv:1.2.3.4/i),a="ucweb"==i.match(/ucweb/i),c="android"==i.match(/android/i),r="windows ce"==i.match(/windows ce/i),d="windows mobile"==i.match(/windows mobile/i);if(!(e||t||o||n||a||c||r||d)){var m=document.getElementById("subtitle"),s=0;!function i(){var e=0;s<="".length?(m.innerHTML="".slice(0,s++),e=setTimeout(i,300)):(m.innerHTML="",clearTimeout(e))}()}}browserRedirect();
+/**
+* Created by Lete on 2020/6/16.
+*/
+//判断移动端设备
+browserRedirect();
+
+function browserRedirect() {
+   var sUserAgent = navigator.userAgent.toLowerCase();
+   var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+   var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+   var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+   var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+   var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+   var bIsAndroid = sUserAgent.match(/android/i) == "android";
+   var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+   var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+   if (!(bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM)) {
+       var html = "<video loop autoplay style='height: 100%;width: 100%;object-fit: cover;'><source src='你的视频地址'></source></video>";
+       /*添加video*/
+    //    document.getElementById("nav").innerHTML += html;
+
+       /*打字效果*/
+       var subtitle = document.getElementById('subtitle')
+       var i = 0;
+
+       function typing() {
+           var timer = 0;
+           var str = '';
+           if (i <= str.length) {
+               subtitle.innerHTML = str.slice(0, i++)
+               timer = setTimeout(typing, 300)
+
+           } else {
+               subtitle.innerHTML = str
+               clearTimeout(timer)
+           }
+       }
+
+       typing()
+   }
+}

@@ -1,1 +1,7 @@
-for(var mobile_sidebar_menus=document.getElementById("mobile-sidebar-menus"),menus_item_child=mobile_sidebar_menus.getElementsByClassName("menus_item_child"),menus_expand=mobile_sidebar_menus.getElementsByClassName("expand"),i=0;i<menus_item_child.length;i++)menus_item_child[i].style.display="none",menus_expand[i].className+=" closed";
+var mobile_sidebar_menus = document.getElementById("mobile-sidebar-menus");
+var menus_item_child = mobile_sidebar_menus.getElementsByClassName("menus_item_child");
+var menus_expand = mobile_sidebar_menus.getElementsByClassName("expand");
+for (var i = 0; i < menus_item_child.length; i++) {
+    menus_item_child[i].style.display = "none";
+    menus_expand[i].className += " closed";
+}
