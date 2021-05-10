@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Sofa</title>
+    <url>/posts/16107.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p><img src="https://gitee.com/sponge_bob_0/cloudimages/raw/master/img/20210510174610.jpg" alt="001"></p>
+]]></content>
+  </entry>
+  <entry>
     <title>git的基本使用方法</title>
     <url>/posts/64569.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="git的基本使用方法"><a href="#git的基本使用方法" class="headerlink" title="git的基本使用方法"></a>git的基本使用方法</h2><h4 id="一、git下载与安装"><a href="#一、git下载与安装" class="headerlink" title="一、git下载与安装"></a>一、git下载与安装</h4><ol>
@@ -112,24 +118,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/posts/16107.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></tbody></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></tbody></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></tbody></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>vue创建项目</title>
     <url>/posts/41222.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="vue创建项目"><a href="#vue创建项目" class="headerlink" title="vue创建项目"></a>vue创建项目</h1><h3 id="一、前期准备"><a href="#一、前期准备" class="headerlink" title="一、前期准备"></a>一、前期准备</h3><h4 id="第一步：先安装node-js和npm。"><a href="#第一步：先安装node-js和npm。" class="headerlink" title="第一步：先安装node.js和npm。"></a>第一步：先安装node.js和npm。</h4><ol>
@@ -203,6 +191,52 @@
       </categories>
       <tags>
         <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用hexo和github搭建个人博客</title>
+    <url>/posts/fbbf84ee.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="使用hexo和github搭建个人博客"><a href="#使用hexo和github搭建个人博客" class="headerlink" title="使用hexo和github搭建个人博客"></a>使用hexo和github搭建个人博客</h2><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><ol>
+<li>要有一个github账号</li>
+<li>安装node.js，npm依赖</li>
+<li>安装git工具</li>
+</ol>
+<h3 id="为github设置SSH-Keys"><a href="#为github设置SSH-Keys" class="headerlink" title="为github设置SSH Keys"></a>为github设置SSH Keys</h3><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">"GitHub邮箱地址"</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>在用户目录下找到<code>.ssh</code>文件夹，将里面后缀为<code>.pub</code>的文件内容复制</p>
+<p>登录Github，点击setting进入—&gt; SSH and GPG keys —&gt; New SSH key，然后把你复制的内容放到Key中，Title中的内容可以随便填一个就行。</p>
+<h3 id="创建github个人仓库"><a href="#创建github个人仓库" class="headerlink" title="创建github个人仓库"></a>创建github个人仓库</h3><p>仓库名为：用户名.github.io（必须是你的用户名，其它名称无效）</p>
+<ol>
+<li>点击New repository</li>
+<li>输入Repository name，必需为<code>用户名.github.io</code>格式。</li>
+<li>点击按钮Create repository</li>
+<li>进入仓库用户名.github.io,点击setting，找到GitHub Pages模块</li>
+<li>点击choose a theme选择一个页面主题</li>
+<li>访问<a href="https://username.github.io就可以访问博客网站了/">https://username.github.io就可以访问博客网站了</a></li>
+</ol>
+<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><p>使用 npm 安装 Hexo：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">npm i hexo-cli -g</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证是否成功</span></span><br><span class="line">hexo -v   </span><br></pre></td></tr></tbody></table></figure>
+
+<p>初始化仓库：在你自己指定位置创建项目文件夹blog（自定义），进入Blog根目录下执行</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">hexo init &lt;blog&gt;</span><br><span class="line"><span class="built_in">cd</span> &lt;blog&gt;</span><br><span class="line">npm install</span><br></pre></td></tr></tbody></table></figure>
+
+<p>然后本地运行：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">hexo new test_my_site  <span class="comment">#生成文章</span></span><br><span class="line">hexo g <span class="comment"># 生成对应的html</span></span><br><span class="line">hexo s <span class="comment"># 启动服务，本地预览</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>打开浏览器访问 <a href="http://localhost/">http://localhost</a>:4000 即可看到内容</p>
+<h3 id="上传到github"><a href="#上传到github" class="headerlink" title="上传到github"></a>上传到github</h3><p>修改配置文件_config.yml：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repo: git@github.com:Github用户名/Github用户名.github.io.git  <span class="comment"># Public repo（SSH url）</span></span><br><span class="line">  branch: main</span><br></pre></td></tr></tbody></table></figure>
+
+<p>上传，发布网站：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save   <span class="comment">#安装插件</span></span><br><span class="line">hexo clean  <span class="comment"># 清除缓存和已生成的静态文件</span></span><br><span class="line">hexo g   <span class="comment"># 生成页面</span></span><br><span class="line">hexo d  <span class="comment"># 部署</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>然后访问<a href="https://username.github.io就可以访问博客网站了/">https://username.github.io就可以访问博客网站了</a></p>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
