@@ -1,6 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Github Actions 实现 Hexo的CICD</title>
+    <url>/posts/422af2d5.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="Github-Actions-实现-Hexo的CICD"><a href="#Github-Actions-实现-Hexo的CICD" class="headerlink" title="Github Actions 实现 Hexo的CICD"></a>Github Actions 实现 Hexo的CICD</h2><h4 id="一、准备仓库"><a href="#一、准备仓库" class="headerlink" title="一、准备仓库"></a>一、准备仓库</h4><ul>
+<li><p>Private repo ： blog </p>
+<ul>
+<li>用来存放 Hexo 博客源码</li>
+</ul>
+</li>
+<li><p>Public repo ： <code>用户名.github.io</code></p>
+<ul>
+<li>用来存放 public 静态页面。最好是空的，当然是你现在的hexo博客也可以。</li>
+</ul>
+</li>
+<li><p>将 Private repo clone 到本地</p>
+</li>
+</ul>
+<h4 id="二、准备ssh-key"><a href="#二、准备ssh-key" class="headerlink" title="二、准备ssh key"></a>二、准备ssh key</h4><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">"Github邮箱地址"</span> -f ~/.ssh/github-actions-deploy</span><br><span class="line">或</span><br><span class="line">ssh-keygen -f ~/.ssh/github-actions-deploy	</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li><code>github-actions-deploy.pub</code> — 公钥文件</li>
+<li><code>github-actions-deploy</code> — 私钥文件</li>
+</ul>
+<h4 id="三、配置-GitHub-仓库"><a href="#三、配置-GitHub-仓库" class="headerlink" title="三、配置 GitHub 仓库"></a>三、配置 GitHub 仓库</h4><h5 id="配置用户名-github-io-公有仓库"><a href="#配置用户名-github-io-公有仓库" class="headerlink" title="配置用户名.github.io 公有仓库"></a>配置用户名.github.io 公有仓库</h5><ul>
+<li>按照 <code>Settings</code>-&gt;<code>Deploye keys</code>-&gt;<code>Add deploy key</code>，进行公钥添加。<ul>
+<li>Title ：<code>HEXO_DEPLOY_PUB</code>(自定义)</li>
+<li>Key：<code>github-actions-deploy.pub</code> 文件中的内容</li>
+<li>注意：必须勾上 <code>Allow write access</code></li>
+</ul>
+</li>
+</ul>
+<h5 id="配置blog私有仓库"><a href="#配置blog私有仓库" class="headerlink" title="配置blog私有仓库"></a>配置blog私有仓库</h5><ul>
+<li>按照<code>Settings</code>-&gt;<code>Secrets</code> -&gt; <code>Add a new secret</code>，进行私钥添加。<ul>
+<li>Name：<code>ACTION_DEPLOY_KEY</code></li>
+<li>Value：<code>github-actions-deploy</code>文件中的内容</li>
+</ul>
+</li>
+</ul>
+<h4 id="四、使用Hexo创建博客"><a href="#四、使用Hexo创建博客" class="headerlink" title="四、使用Hexo创建博客"></a>四、使用Hexo创建博客</h4><ul>
+<li>使用 npm 安装 Hexo</li>
+</ul>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看安装结果</span></span><br><span class="line">hexo -v</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>初始化：Hexo安装完成后，在自定义文件夹下输入以下命令：</li>
+</ul>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">hexo init &lt;file&gt;</span><br><span class="line"><span class="built_in">cd</span> &lt;file&gt;</span><br><span class="line">npm install</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>在文件夹下启动hexo服务</li>
+</ul>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">hexo server  或  hexo s</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>安装插件</li>
+</ul>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>在 Hexo 项目根目录配置文件<code>_config.yaml</code>中配置</li>
+</ul>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">url: http://用户名.github.io</span><br><span class="line">root: /</span><br><span class="line"></span><br><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repo: git@github.com:Github用户名/Github用户名.github.io.git  <span class="comment"># Public repo（SSH url）</span></span><br><span class="line">  branch: main</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li><p>自动部署网站：</p>
+<p>执行下列的其中一个命令,让<code>Hexo</code>在生成完毕后自动部署网站，两个命令的作用是相同的。</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">hexo generate --deploy</span><br><span class="line">或</span><br><span class="line">hexo deploy --generate</span><br></pre></td></tr></tbody></table></figure>
+
+<p>​       上面两个命令可以简写为:</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">hexo g -d</span><br><span class="line">或</span><br><span class="line">hexo d -g</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="五、创建Workflow"><a href="#五、创建Workflow" class="headerlink" title="五、创建Workflow"></a>五、创建Workflow</h4><p>首先在 <code>Private repo</code> 下创建一个新文件：<code>.github/workflows/deploy.yml</code>（文件名可以自定义，但是一定要放在 <code>.github/workflows</code> 目录下）或者 在 <code>Private repo</code> 仓库的<code>Actions</code>选项卡下点击<code>Set up this workflow</code>新建<code>workflow</code>，编写如下配置：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># workflow name</span></span><br><span class="line">name: Deploy Blog</span><br><span class="line"></span><br><span class="line">on: [push] <span class="comment"># 当有新push时运行</span></span><br><span class="line"><span class="comment">#on:</span></span><br><span class="line">  <span class="comment">#push:</span></span><br><span class="line">    <span class="comment">#branches:</span></span><br><span class="line">      <span class="comment">#- main</span></span><br><span class="line"></span><br><span class="line">env:</span><br><span class="line">  TZ: Asia/Shanghai</span><br><span class="line">  </span><br><span class="line"><span class="built_in">jobs</span>:</span><br><span class="line">  build:</span><br><span class="line">   	<span class="comment"># 定义运行环境</span></span><br><span class="line">    runs-on: ubuntu-latest   <span class="comment"># 在最新版的Ubuntu系统下运行</span></span><br><span class="line">	strategy:</span><br><span class="line">      matrix:</span><br><span class="line">        node-version: [12.x]</span><br><span class="line">        </span><br><span class="line">    steps:</span><br><span class="line">      - name: Checkout  <span class="comment"># 将仓库内main分支的内容下载到工作目录</span></span><br><span class="line">        uses: actions/checkout@v2   <span class="comment"># 脚本来自 https://github.com/actions/checkout</span></span><br><span class="line">          </span><br><span class="line">      - name: Use Node.js <span class="variable">${{ matrix.node-version }</span>}   <span class="comment"># 配置Node环境</span></span><br><span class="line">        uses: actions/setup-node@v1   <span class="comment"># 配置脚本来自 https://github.com/actions/setup-node</span></span><br><span class="line">        with:</span><br><span class="line">          node-version: <span class="variable">${{ matrix.node-version }</span>}</span><br><span class="line">	</span><br><span class="line">	  <span class="comment">#- name: Cache node modules</span></span><br><span class="line">  		<span class="comment">#uses: actions/cache@v1</span></span><br><span class="line">  		<span class="comment">#with:</span></span><br><span class="line">    	  <span class="comment">#path: ~/.npm</span></span><br><span class="line">    	  <span class="comment">#key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}</span></span><br><span class="line"></span><br><span class="line">      - name: Setup Hexo</span><br><span class="line">        env:</span><br><span class="line">          ACTION_DEPLOY_KEY: <span class="variable">${{secrets.ACTION_DEPLOY_KEY}</span>}</span><br><span class="line">        run: |</span><br><span class="line">          <span class="comment"># set up private key for deploy</span></span><br><span class="line">          mkdir -p ~/.ssh/</span><br><span class="line">          <span class="built_in">echo</span> <span class="string">"<span class="variable">$ACTION_DEPLOY_KEY</span>"</span> &gt; ~/.ssh/id_rsa   <span class="comment"># 配置秘钥</span></span><br><span class="line">          chmod 600 ~/.ssh/id_rsa</span><br><span class="line">          ssh-keyscan github.com &gt;&gt; ~/.ssh/known_hosts</span><br><span class="line">	 </span><br><span class="line">      <span class="comment"># set git infomation</span></span><br><span class="line">	  - name: Setup Git Infomation</span><br><span class="line">  		run: |</span><br><span class="line">    	  git config --global user.email <span class="string">"xx@doe.com"</span>  <span class="comment"># 换成你自己的邮箱</span></span><br><span class="line">          git config --global user.name <span class="string">"xxx"</span>   <span class="comment"># 换成你自己的用户名	</span></span><br><span class="line">      </span><br><span class="line">      <span class="comment"># install dependencies</span></span><br><span class="line">	  - name: Install dependencies</span><br><span class="line">        run: |</span><br><span class="line">          npm i -g hexo-cli   <span class="comment"># 安装hexo</span></span><br><span class="line">          npm i</span><br><span class="line">          </span><br><span class="line">      - name: Deploy Hexo</span><br><span class="line">        run: |</span><br><span class="line">           <span class="comment"># publish</span></span><br><span class="line">           hexo clean</span><br><span class="line">           hexo generate &amp;&amp; hexo deploy     <span class="comment"># 执行部署程序    </span></span><br><span class="line">       </span><br><span class="line">      <span class="comment"># Push 到 GitHub Pages</span></span><br><span class="line">      <span class="comment">#- name: Deploy Hexo To Github</span></span><br><span class="line">  		<span class="comment">#run: |</span></span><br><span class="line">    	  <span class="comment">#cd public</span></span><br><span class="line">    	  <span class="comment">#rm -rf .git</span></span><br><span class="line">    	  <span class="comment">#echo blog.hvnobug.com &gt;&gt; CNAME</span></span><br><span class="line">    	  <span class="comment">#git init</span></span><br><span class="line">    	  <span class="comment">#git add -A &amp;&amp; git commit -m "Site updated: `date '+%Y-%m-%d %H:%Min:%S'`"</span></span><br><span class="line">    	  <span class="comment">#git push -f git@github.com:xxx/用户名.github.io.git main</span></span><br></pre></td></tr></tbody></table></figure>
+
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Sofa</title>
     <url>/posts/16107.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p><img src="https://gitee.com/sponge_bob_0/cloudimages/raw/master/img/20210510174610.jpg" alt="001"></p>
