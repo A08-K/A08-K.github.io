@@ -164,12 +164,12 @@
 <ol start="2">
 <li>查看分支</li>
 </ol>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># 查看所有分支，* 号代表当前工作分支</span></span><br><span class="line">git branch </span><br><span class="line"><span class="comment"># 查看分支详情，包括分支指向的commitId及提交信息</span></span><br><span class="line">git branch -v </span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># 查看所有分支，* 号代表当前工作分支</span></span><br><span class="line">git branch </span><br><span class="line"><span class="comment"># 查看该项目所有的分支，*号代表当前工作分支</span></span><br><span class="line">git branch -a</span><br><span class="line"><span class="comment"># 查看分支详情，包括分支指向的commitId及提交信息</span></span><br><span class="line">git branch -v </span><br></pre></td></tr></tbody></table></figure>
 
 <ol start="3">
 <li>切换分支</li>
 </ol>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">#切换到指定分支</span></span><br><span class="line">git checkout 分支名</span><br><span class="line"></span><br><span class="line"><span class="comment">#创建并切换到指定分支 </span></span><br><span class="line">git checkout -b 分支名 </span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">#切换到指定分支</span></span><br><span class="line">git checkout 分支名</span><br><span class="line"></span><br><span class="line"><span class="comment">#创建并切换到指定分支 </span></span><br><span class="line">git checkout -b 分支名 </span><br><span class="line"></span><br><span class="line"><span class="comment">#例如：拉取远程5.1分支到本地并切换过去</span></span><br><span class="line">git checkout -b versions/5.1m_d origin/versions/5.1m_d  </span><br></pre></td></tr></tbody></table></figure>
 
 <p>​    4. 合并分支</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># 将指定分支合并到当前分支</span></span><br><span class="line">git merge 分支名 </span><br></pre></td></tr></tbody></table></figure>
@@ -191,7 +191,12 @@
 <ol start="8">
 <li>分支暂存</li>
 </ol>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># 将工作暂存</span></span><br><span class="line">git stash </span><br><span class="line"></span><br><span class="line"><span class="comment"># 从暂存区之中进行恢复，恢复的同时也将stash内容删除</span></span><br><span class="line">git stash pop</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># 将工作暂存</span></span><br><span class="line">git stash </span><br><span class="line"></span><br><span class="line"><span class="comment">#查看暂存区内容</span></span><br><span class="line">git stash list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从暂存区之中进行恢复，恢复的同时也将stash内容删除</span></span><br><span class="line">git stash pop</span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="9">
+<li>在git add时忽略某一修改过的文件上传提交</li>
+</ol>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">git add -u</span><br><span class="line">git reset -- src/assets/config/Config.json（文件路径）</span><br></pre></td></tr></tbody></table></figure>
 
 ]]></content>
       <categories>
